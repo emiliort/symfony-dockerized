@@ -46,4 +46,4 @@ docker-compose exec web bash
 ## License
 
 Autor: [emiliort](https://github.com/emiliort).
-Licensed under the terms of the [MIT license](LICENSE.md).
+Licensed under the terms of the [MIT license](LICENSE).
