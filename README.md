@@ -9,13 +9,13 @@ Dockerized Symfony / PHP development stack: Apache+PHP, Nginx, MySQL, MongoDB, P
 * [MySQL](http://www.mysql.com/)
 * [MongoDB](http://www.mongodb.org/) TODO:
 * [PHP-FPM](http://php-fpm.org/) TODO:
-* XDebug  TODO:
+* [XDebug](https://xdebug.org/)  TODO:
 * [Composer](https://getcomposer.org/)
 * [Symfony CLI](https://symfony.com/)
 * Make  TODO:
 * [Memcached](http://memcached.org/) TODO:
 * [Redis](http://redis.io/) TODO:
-* [Elasticsearch](<http://www.elastic> search.org/) TODO:
+* [Elasticsearch](http://www.elasticsearch.org/) TODO:
 * [RabbitMQ](https://www.rabbitmq.com/) TODO:
 * [Oh My Zsh](https://ohmyz.sh/) TODO:
 
