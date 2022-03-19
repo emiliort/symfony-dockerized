@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - '3306:3306'
+    restart: always
+    volumes:
+      - ./.docker/data/mysql:/var/lib/mysql
+
+  web:
+    build:
+      context: ./.docker/web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      # - mongo:mongo
+      # - memcached:memcached
+      # - redis:redis
+      # - elasticsearch:elasticsearch
+      # - rabbitmq:rabbitmq
+
+
+      # mongo:
+      #   image: mongo
+      #   ports:
+      #     - "27017:27017"
+
+      # memcached:
+      #   image: memcached
+      #   ports:
+      #     - "11211:11211"
+
+      # redis:
+      #   image: redis
+      #   ports:
+      #     - "6379:6379"
+
+      # elasticsearch:
+      #   image: elasticsearch
+      #   ports:
+      #     - "9200:9200"
+      #     - "9300:9300"
+
+      # rabbitmq:
+      #   image: rabbitmq:3.6.1-management
+      #   ports:
+      #     - "15672:15672"
+      #     - "5672:5672"
