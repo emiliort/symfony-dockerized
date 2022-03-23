@@ -1,18 +1,18 @@
 # Symfony Dockerized
 
-Dockerized Symfony / PHP development stack: Apache+PHP, Nginx, MySQL, MongoDB, PHP-FPM, Make, Composer, Symfony CLI, XDebug, Memcached, Redis, Elasticsearch and RabbitMQ.
+Dockerized Symfony / PHP development stack: Nginx, MySQL, MongoDB, PHP-FPM, Make, Composer, Symfony CLI, XDebug, Memcached, Redis, Elasticsearch and RabbitMQ.
 
 ## What's inside
 
-* [Apache HTTP Server](https://httpd.apache.org/)
-* [Nginx](http://nginx.org/)  TODO:
+* [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
-* [MongoDB](http://www.mongodb.org/) TODO:
-* [PHP-FPM](http://php-fpm.org/) TODO:
-* [XDebug](https://xdebug.org/)  TODO:
+
+* [PHP-FPM](http://php-fpm.org/)
+* [XDebug](https://xdebug.org/)
 * [Composer](https://getcomposer.org/)
 * [Symfony CLI](https://symfony.com/)
 * Make  TODO:
+* [MongoDB](http://www.mongodb.org/) TODO:
 * [Memcached](http://memcached.org/) TODO:
 * [Redis](http://redis.io/) TODO:
 * [Elasticsearch](http://www.elasticsearch.org/) TODO:
@@ -35,13 +35,14 @@ docker-compose up -d
 Console:
 
 ```sh
-docker-compose exec web bash
+docker-compose exec php bash
 ```
 
 ## Configuration files
 
 * enviroment variables: .env
-* php.ini: .docker/web/php.ini
+* php.ini: .docker/php/phpX.Y.ini
+* nginx: .docker/nginx/default.conf
 
 ## License
 
