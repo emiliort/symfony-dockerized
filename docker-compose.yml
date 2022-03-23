@@ -2,6 +2,30 @@ version: '3'
 
 services:
 
+  nginx:   
+    image: nginx:stable-alpine
+    ports:   
+      - 80:80 
+      - 443:443
+    volumes:
+      - ./:/var/www/
+      - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: ./.docker/php
+    env_file:
+      - .env
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/var/www/
+      - .docker/php/php8.0.ini /usr/local/etc/php.ini
+    depends_on:
+      - mysql
+
   mysql:
     image: mysql:8.0
     environment:
@@ -15,18 +39,6 @@ services:
     volumes:
       - ./.docker/data/mysql:/var/lib/mysql
 
-  web:
-    build:
-      context: ./.docker/web
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./:/var/www/
-    env_file:
-      - .env
-    depends_on:
-      - mysql
       # - mongo:mongo
       # - memcached:memcached
       # - redis:redis
