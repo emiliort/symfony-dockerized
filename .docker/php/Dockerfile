@@ -9,10 +9,10 @@ RUN apt update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 
-#PHP extensions , available extensions https://github.com/mlocati/docker-php-extension-installer#supported-php-extensions
+#PHP extensions, available extensions https://github.com/mlocati/docker-php-extension-installer#supported-php-extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions gd xdebug imagick pdo_mysql mysqli
+    install-php-extensions gd xdebug pdo_mysql pdo_pgsql mysqli
 
 #composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -20,8 +20,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 #symfony cli
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
-
-#php.ini
-#ADD php8.0.ini /usr/local/etc/php.ini
 
 WORKDIR /var/www
