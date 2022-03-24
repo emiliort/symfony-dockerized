@@ -15,7 +15,7 @@ Dockerized Symfony / PHP development stack: Nginx, MySQL, MongoDB, PHP-FPM, Make
 * [Redis](http://redis.io/)
 * [Elasticsearch](http://www.elasticsearch.org/)
 * [RabbitMQ](https://www.rabbitmq.com/)
-* [Oh My Zsh](https://ohmyz.sh/) TODO:
+* [Oh My Zsh](https://ohmyz.sh/)
 
 ## Requirements
 
@@ -30,18 +30,18 @@ Run:
 docker-compose up -d
 ```
 
-Console:
+Shell:
 
 ```sh
-docker-compose exec php bash
+docker-compose exec workspace zsh
 ```
 
 ## Configuration files
 
-* enviroment variables: .env
+* Docker enviroment variables: .docker/workspace/.env
 * php.ini: .docker/php/phpX.Y.ini
 * nginx: .docker/nginx/default.conf
-* services: comment or uncomment services in docker-compose. The minimum service required is php. Nginx is optional, you can use the symfony server by running "symfony server:start" from the php container console
+* services: comment or uncomment services in docker-compose. The minimum service required is php. Nginx is optional, you can use the symfony server by running "symfony server:start" from the workspace container shell
 
 ## License
 
