@@ -3,18 +3,19 @@ version: '3'
 services:
 
 ###########################################################################
-# PHP
+# workspace + PHP
 ###########################################################################
-  php:
+  workspace:
     build:
-      context: ./.docker/php
+      context: ./.docker/workspace
     env_file:
-      - .env
+      - .docker/workspace/.env
     ports:
       - 9000:9000
     volumes:
       - ./:/var/www/
       - .docker/php/php8.0.ini:/usr/local/etc/php.ini
+      - .docker/workspace/.zshrc:/root/.zshrc
     # links:
     #   - mysql
 
@@ -24,7 +25,7 @@ services:
 #   mysql:
 #     image: mysql:8.0
 #     env_file:
-#       - .env
+#       - .docker/workspace/.env
 #     environment:
 #       MYSQL_DATABASE: ${MYSQL_DATABASE}
 #       MYSQL_USER: ${MYSQL_USER}

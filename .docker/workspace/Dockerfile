@@ -1,8 +1,7 @@
-#available PHP versions: 8.1 , 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6 (https://hub.docker.com/_/php?tab=tags)
 FROM php:8.0-fpm 
 
 RUN apt update \
-    && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip curl wget zsh fonts-powerline \
+    && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip curl wget zsh fonts-powerline locales nano \
     && docker-php-ext-install intl opcache pdo pdo_mysql \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
@@ -23,6 +22,8 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 #oh my zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-COPY zshrc /root/.zshrc
+RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
+RUN export LANG=en_US.UTF-8
+RUN locale-gen 
 
 WORKDIR /var/www
