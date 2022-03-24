@@ -1,23 +1,21 @@
 # Symfony Dockerized
 
-Dockerized Symfony / PHP development stack: Apache+PHP, Nginx, MySQL, MongoDB, PHP-FPM, Make, Composer, Symfony CLI, XDebug, Memcached, Redis, Elasticsearch and RabbitMQ.
+Dockerized Symfony / PHP development stack: Nginx, MySQL, MongoDB, PHP-FPM, Make, Composer, Symfony CLI, XDebug, Memcached, Redis, Elasticsearch and RabbitMQ.
 
 ## What's inside
 
-* [Apache HTTP Server](https://httpd.apache.org/)
-* [Nginx](http://nginx.org/)  TODO:
+* [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
-* [MongoDB](http://www.mongodb.org/) TODO:
-* [PHP-FPM](http://php-fpm.org/) TODO:
-* [XDebug](https://xdebug.org/)  TODO:
+* [PHP-FPM](http://php-fpm.org/)
+* [XDebug](https://xdebug.org/)
 * [Composer](https://getcomposer.org/)
 * [Symfony CLI](https://symfony.com/)
-* Make  TODO:
-* [Memcached](http://memcached.org/) TODO:
-* [Redis](http://redis.io/) TODO:
-* [Elasticsearch](http://www.elasticsearch.org/) TODO:
-* [RabbitMQ](https://www.rabbitmq.com/) TODO:
-* [Oh My Zsh](https://ohmyz.sh/) TODO:
+* [MongoDB](http://www.mongodb.org/)
+* [Memcached](http://memcached.org/)
+* [Redis](http://redis.io/)
+* [Elasticsearch](http://www.elasticsearch.org/)
+* [RabbitMQ](https://www.rabbitmq.com/)
+* [Oh My Zsh](https://ohmyz.sh/)
 
 ## Requirements
 
@@ -32,16 +30,18 @@ Run:
 docker-compose up -d
 ```
 
-Console:
+Shell:
 
 ```sh
-docker-compose exec web bash
+docker-compose exec workspace zsh
 ```
 
 ## Configuration files
 
-* enviroment variables: .env
-* php.ini: .docker/web/php.ini
+* Docker enviroment variables: .docker/workspace/.env
+* php.ini: .docker/php/phpX.Y.ini
+* nginx: .docker/nginx/default.conf
+* services: comment or uncomment services in docker-compose. The minimum service required is php. Nginx is optional, you can use the symfony server by running "symfony server:start" from the workspace container shell
 
 ## License
 

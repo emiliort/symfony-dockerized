@@ -2,61 +2,95 @@ version: '3'
 
 services:
 
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-    ports:
-      - '3306:3306'
-    restart: always
-    volumes:
-      - ./.docker/data/mysql:/var/lib/mysql
-
-  web:
+###########################################################################
+# workspace + PHP
+###########################################################################
+  workspace:
     build:
-      context: ./.docker/web
+      context: ./.docker/workspace
+    env_file:
+      - .docker/workspace/.env
     ports:
-      - "80:80"
-      - "443:443"
+      - 9000:9000
     volumes:
       - ./:/var/www/
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      # - mongo:mongo
-      # - memcached:memcached
-      # - redis:redis
-      # - elasticsearch:elasticsearch
-      # - rabbitmq:rabbitmq
+      - .docker/php/php8.0.ini:/usr/local/etc/php.ini
+      - .docker/workspace/.zshrc:/root/.zshrc
+    # links:
+    #   - mysql
 
+# ###########################################################################
+# # MySQL
+# ###########################################################################
+#   mysql:
+#     image: mysql:8.0
+#     env_file:
+#       - .docker/workspace/.env
+#     environment:
+#       MYSQL_DATABASE: ${MYSQL_DATABASE}
+#       MYSQL_USER: ${MYSQL_USER}
+#       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+#     ports:
+#       - '3306:3306'
+#     restart: always
+#     volumes:
+#       - ./.docker/data/mysql:/var/lib/mysql
 
-      # mongo:
-      #   image: mongo
-      #   ports:
-      #     - "27017:27017"
+# ###########################################################################
+# # nginx
+# ###########################################################################
+#   nginx:   
+#     image: nginx:stable-alpine
+#     ports:   
+#       - 80:80 
+#       - 443:443
+#     volumes:
+#       - ./:/var/www/
+#       - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+#     depends_on:
+#       - php
 
-      # memcached:
-      #   image: memcached
-      #   ports:
-      #     - "11211:11211"
+# ###########################################################################
+# # mongo
+# ###########################################################################
+#   mongo:
+#     image: mongo:latest
+#     ports:
+#       - "27017:27017"
 
-      # redis:
-      #   image: redis
-      #   ports:
-      #     - "6379:6379"
+# ###########################################################################
+# # memcached
+# ###########################################################################
+#   memcached:
+#     image: memcached:latest
+#     ports:
+#       - "11211:11211"
 
-      # elasticsearch:
-      #   image: elasticsearch
-      #   ports:
-      #     - "9200:9200"
-      #     - "9300:9300"
+# ###########################################################################
+# # redis
+# ###########################################################################
+#   redis:
+#     image: redis:latest
+#     ports:
+#       - "6379:6379"
 
-      # rabbitmq:
-      #   image: rabbitmq:3.6.1-management
-      #   ports:
-      #     - "15672:15672"
-      #     - "5672:5672"
+# ###########################################################################
+# # elasticsearch
+# ###########################################################################
+#   elasticsearch:
+#     image: elasticsearch:8.1.1
+#     ports:
+#       - "9200:9200"
+#       - "9300:9300"
+#     volumes:
+#       - ./.docker/data/elastic:/usr/share/elasticsearch/data
+
+# ###########################################################################
+# # rabbitmq
+# ###########################################################################          
+#   rabbitmq:
+#     image: rabbitmq:latest
+#     ports:
+#       - "15672:15672"
+#       - "5672:5672"
