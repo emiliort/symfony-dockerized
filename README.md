@@ -1,5 +1,7 @@
 # Symfony Dockerized
 
+> Discontinued, recommended alternative: [Symfony Docker](https://github.com/dunglas/symfony-docker)
+
 Dockerized Symfony / PHP development stack: Nginx, MySQL, MongoDB, PHP-FPM, Make, Composer, Symfony CLI, XDebug, Memcached, Redis, Elasticsearch and RabbitMQ.
 
 ## What's inside
